@@ -73,7 +73,7 @@
                         <a href="{{ route('login') }}">會員登入</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">管理員登入</a>
+                            <a href="{{ route('register') }}">註冊</a>
                         @endif
                     @endauth
                 </div>
@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    線上訂購飲料系統
                 </div>
 
                 <div class="links">
