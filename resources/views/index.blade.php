@@ -71,7 +71,7 @@
                         <a href="{{ url('/users') }}">回會員專區</a>
                     @else
                         <a href="{{ route('login') }}">會員登入</a>
-
+                        <a href="{{ url('/admin') }}">管理者登入</a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">註冊</a>
                         @endif
