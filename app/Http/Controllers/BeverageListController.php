@@ -24,7 +24,7 @@ class BeverageListController extends Controller
      */
     public function create()
     {
-        //
+        return '123';
     }
 
     /**

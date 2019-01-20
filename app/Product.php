@@ -9,6 +9,9 @@ class Product extends Model
     protected $fillable = [
 		'name'
 		,'price',];
+
+	public $timestamps = false;
+
 		public function beveragelists()
 		{
 			return $this->hasMany(BeverageList::class);
