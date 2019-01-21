@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -14,13 +15,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        $id=Auth::id();
+        if($id!=1){return redirect('/users'); }
+            else{
+                $products=Product::all();
         //dd($products);
 
-        return view('products.index',[
-            'products' => $products
-        ]);
-    }
+                return view('products.index',[
+                    'products' => $products
+                ]);
+            }
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -40,6 +45,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     { 
+        $this->validate($request, [
+            'name' => 'required|min:4',
+            'price'=> 'required|min:1'
+        ]);
+
+        $request->user()->tasks()->create([
+            'name' => $request->name,
+        ]);
         
         $products = Product::create(['name' => $request->name,'price' => $request->price,]);
         return redirect('/products/index');
@@ -87,6 +100,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('/products/index');
     }
 }
