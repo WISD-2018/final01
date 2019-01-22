@@ -70,8 +70,7 @@
                     @auth
                         <a href="{{ url('/users') }}">回會員專區</a>
                     @else
-                        <a href="{{ route('login') }}">會員登入</a>
-                        <a href="{{ url('/admin') }}">管理者登入</a>
+                        <a href="{{ route('login') }}">登入</a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">註冊</a>
                         @endif
@@ -85,10 +84,7 @@
                 </div>
 
                 <div class="links">
-                <a href="https://laravel.com/docs">商品列表</a>
-                    <a href="https://laracasts.com">所有店家</a>
-                    <a href="https://laravel-news.com">最新公告</a>
-                    <a href="https://github.com/laravel/laravel">聯絡我們</a>
+                    <a href="{{url('orders/index')}}">商品列表</a>
                 </div>
             </div>
         </div>

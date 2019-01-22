@@ -26,3 +26,11 @@ Route::get('/products/index', 'ProductController@index');
 Route::post('/products/index', 'ProductController@store');
 Route::delete('products/{product}','ProductController@destroy');
 
+Route::get('orders/index','OrderController@index');
+
+Route::get('/order/{id}/create',['as'=>'order.create','uses'=>'OrderController@create'])->middleware('auth');
+Route::post('/orders',['as'=>'order.store','uses'=>'OrderController@store'])->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

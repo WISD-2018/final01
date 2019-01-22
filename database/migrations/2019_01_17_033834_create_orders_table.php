@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->integer('store_id');
             $table->string('address');
+            $table->integer('total')->unsign();
             $table->timestamps();
         });
     }

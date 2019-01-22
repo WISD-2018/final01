@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\BeverageList;
+use App\Order;
+use App\Product;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class BeverageListController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,20 @@ class BeverageListController extends Controller
      */
     public function index()
     {
-        //
+        $user=Auth::user()->id;
+        $BeverageList = Order::where('user_id', $user)
+        ->select('BeverageList.id','carts.cs_id','graphiccard.gc_name','carts.price','carts.qy')
+        ->orderBy('id','ASC')
+        ->get();
+        $data=['carts' => $cart];
+
+        return view('orders.BeverageList', $data);
+    }
+
+    public function removeItem($id){
+
+        CartItem::destroy($id);
+        return redirect('/BeverageList');
     }
 
     /**
@@ -22,9 +44,16 @@ class BeverageListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return '123';
+        $user=Auth::user()->id;
+        $pid=$request->input('product_id');
+        $number=$request->input('number');
+        $price=Product::where('ProductId',$pid)->value('price');
+        DB::insert('insert into BeverageList (user_id, product_id, price, number) values (?, ?, ?, ?)',[$user,$pid, $price, $number]);
+
+
+        return redirect('/orders/BeverageList');
     }
 
     /**

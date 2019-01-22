@@ -12,7 +12,10 @@
 			</div>
 			<div class="col-sm-6">
 				<label>price</label><input type="text" name="price" class="form-control">
-			</div>	
+			</div>
+            <div class="col-sm-6">
+                <label>image</label><input type="text" name="image" class="form-control">
+            </div>  
 		</div>
 		 <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
@@ -41,6 +44,7 @@
                                 <td class="table-text">
                                     <div style="font-size: 16px">名稱：{{ $product->name }}</div>
                                     <div style="font-size: 16px">價格：{{ $product->price }}</div>
+                                    <div style="font-size: 16px">圖片：<img src="{{ $product->image }}" alt="{{ $product->image }}"></div>
                                 </td>
 
                                 <td>

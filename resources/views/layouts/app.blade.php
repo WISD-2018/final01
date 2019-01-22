@@ -23,7 +23,6 @@
                 color: #000000;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
                 margin: 0;
             }
 
@@ -109,7 +108,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    <a class="dropdown-item" href="{{ url('/beverage_lists') }}">
+                                    <a class="dropdown-item" href="{{ url('/BeverageList') }}">
                                         {{ __('購物車') }}
                                     </a>
                                     
@@ -131,7 +130,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="background-size: cover;">
             @yield('content')
         </main>
     </div>
