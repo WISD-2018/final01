@@ -1,6 +1,6 @@
 # 線上訂購飲料系統
 
-<p align="center"><img src="https://imgur.com/a/5q4rNWM"></p>
+<p align="center"><img src="https://i.imgur.com/5jHtEIz.jpg"></p>
 
 協助使用者進行飲料訂購的網站
 
