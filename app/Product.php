@@ -8,7 +8,8 @@ class Product extends Model
 {
     protected $fillable = [
 		'name'
-		,'price',];
+		,'price'
+		,'image',];
 
 	public $timestamps = false;
 

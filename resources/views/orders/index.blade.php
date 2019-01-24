@@ -20,7 +20,7 @@
                                 
                                 <div class="col-md-12 col-md-offset-3">
 
-                                    <a href="/order/{{$product->id}}/create" class="btn btn-success btn-product"><span class="fa fa-shopping-cart"></span> 購買</a></div>
+                                    <a href="{{route('cart.add',['id'=>$product->id])}}" class="btn btn-success btn-product"><span class="fa fa-shopping-cart"></span> 購買</a></div>
 
                             </div>
                         </div>

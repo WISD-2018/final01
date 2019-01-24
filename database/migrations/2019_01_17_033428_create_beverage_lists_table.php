@@ -15,7 +15,8 @@ class CreateBeverageListsTable extends Migration
     {
         Schema::create('beverage_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->string('pname');
+            $table->integer('price');
             $table->integer('order_id');
             $table->string('size');
             $table->string('temprate');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BreverageList;
+use App\BeverageList;
 use App\Product;
 use App\Order;
 use App\User;
@@ -23,6 +23,16 @@ class OrderController extends Controller
         return view('orders.index',['products' => $products]);
     }
 
+    public function admin()
+    {
+        $id=Auth::id();
+        if($id!=1){return redirect('/users'); }
+        else{
+            $orders = BeverageList::all();
+            return view('orders.admin',['orders' => $orders]);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,12 +40,7 @@ class OrderController extends Controller
      */
     public function create(Request $request,$id)
     {
-        $uid=Auth::id();
-        $user=User::find($uid);
-        $pid=Product::find($id);
-        $data=['product'=> $pid];
-        DB::table('orders')->insert('insert into orders (user_id, total) values (?, ?)');
-        return view('order.create',['users'=> $user],$data);
+
     }
 
     /**
@@ -46,16 +51,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $price=$request->input('price');
-        $number=$request->input('number');
-        $total = ($price * $number);
-        $odid = DB::table('orders')->insertGetId(
-            ['user_id' => $request->input('id'), 'total' => $total]
-        );
-        DB::insert('insert into orderdetails (order_id, product_id, number) values (?, ?, ?)', [$odid, $request->input('product_id'), $request->input('number')]);
-        return view('/order.index');
 
-        return view('/order.beveragelist');
     }
 
     /**
@@ -98,8 +94,9 @@ class OrderController extends Controller
      * @param  \App\order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(order $order)
+    public function destroy(order $id)
     {
-        //
+        $id->delete();
+        return redirect('/orders/admin');
     }
 }

@@ -49,12 +49,8 @@ class ProductController extends Controller
             'name' => 'required|min:4',
             'price'=> 'required|min:1',
         ]);
-
-        $request->user()->tasks()->create([
-            'name' => $request->name,
-        ]);
         
-        $products = Product::create(['name' => $request->name,'price' => $request->price,'image'=>$request->image,]);
+        $products = Product::create(['name' => $request->name,'price' => $request->price,'image' => $request->image,]);
         return redirect('/products/index');
     }
 
